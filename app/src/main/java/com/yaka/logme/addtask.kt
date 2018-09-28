@@ -19,10 +19,11 @@ class addtask : AppCompatActivity() {
         addPerson(editText.text.toString())
         var intent: Intent = Intent(this,AccountActivity::class.java)
         startActivity(intent)
+        finish()
     }
     fun addPerson(task: String) {
         val ListEntity = ListEntity(0, task)
-
+        AccountActivity.x--
         Single.fromCallable {
             AccountActivity.database?.personDao()?.insert(ListEntity)
         }.subscribeOn(Schedulers.io())
